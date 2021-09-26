@@ -10,7 +10,7 @@ import time
 # Crear ventana
 window = Tk()
 window.title("Control E/S")
-window.geometry("400x300+0+0")
+window.geometry("600x400+0+0")
 
 def on():
   print('on')
