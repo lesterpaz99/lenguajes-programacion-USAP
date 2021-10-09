@@ -13,7 +13,7 @@ main_window = Tk()
 main_window.title("Control I/O")
 main_window.geometry("600x400+0+0")
 
-# Configura texto
+# Configura fuente para ventana principal
 text1 = tkFont.Font(family="Helvetica", size=1)
 text2 = tkFont.Font(family="Arial", size=14)
 
@@ -48,6 +48,45 @@ def update():
         main_window.after(1000, update)
 
 update()
+
+def toplevel():
+    # Variables globales
+    global initial_hour
+    global initial_min
+    global final_hour
+    global final_min
+
+    window_time = Toplevel()
+    window_time.title("Programacion de tiempo")
+    window_time.geometry("400x300+180+100")
+
+    # Define las variables globales como tipo cadena
+    initial_hour.StringVar()
+    initial_min.StringVar()
+    final_hour.StringVar()
+    final_min.StringVar()
+
+    # Configura fuente para la venta del tiempo
+    t1 = tkFont.Font(family="Helvetica", size=11, weight="bold")
+    t2 = tkFont.Font(family="Arial", size=9, weight="bold")
+
+    # Etiquetas / Labels
+    subtitle_label = Label(window_time, text="Horario de activacion").place(x=10, y=10)
+    label_ih = Label(window_time, text="Hora inicial", font=t2).place(x=10, y=50)
+    label_im = Label(window_time, text="Minuto inicial", font=t2).place(x=10, y=100)
+    label_fh = Label(window_time, text="Hora final", font=t2).place(x=10, y=150)
+    label_fm = Label(window_time, text="Minuto inicial", font=t2).place(x=10, y=200)
+
+    # Cajas de texto / Text boxes
+    textbox_ih = Entry(window_time, textvariable=initial_hour, width=5).place(x=100, y=50)
+    textbox_im = Entry(window_time, textvariable=initial_min, width=5).place(x=100, y=100)
+    textbox_fh = Entry(window_time, textvariable=final_hour, width=5).place(x=100, y=150)
+    textbox_fm = Entry(window_time, textvariable=final_min, width=5).place(x=100, y=200)
+
+    # Botones / Buttons
+    btn_save = Button(window_time, text="Guardar", command=save).place(x=100, y=250)
+
+    window_time.mainloop()
 
 
 main_window.mainloop()
