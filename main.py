@@ -21,6 +21,8 @@ text2 = tkFont.Font(family="Arial", size=14)
 title = Label(main_window, text="Control GPIO", font=text1).place(x=100, y=10)
 
 def update():
+    # actualiza el label / etiqueta del estado
+
     pointer_file = open("/home/lesterpaz99/Documents/gpio_state.txt", "r")
     for line in pointer_file:
       field = line.split("\n")
@@ -39,7 +41,7 @@ def update():
 update()
 
 def save():
-    # Inserta la configuracion a los archivos sh
+    # Inserta la configuracion a los archivos en cron
     
     print('Saved')
     ih = initial_hour.get()
