@@ -49,7 +49,47 @@ def update():
 
 update()
 
+def save():
+  # Inserta la configuracion a los archivos sh
+    
+    print('Saved')
+    ih = initial_hour.get()
+    im = initial_min.get()
+    fh = final_hour.get()
+    fm = final_min.get()
+    tab = " "
+    month = day = year = "*"
+    user = "root"
+    path1 = "/home/lesterpaz99/Documents/myFirstAppUSAP/turn_on.sh"
+    path2 = "/home/lesterpaz99/Documents/myFirstAppUSAP/turn_off.sh"
+    
+    # tc stands for time-config
+    string_tc1 = str(im+tab+ih+tab+day+tab+month+tab+year+tab+user+tab+path1)
+    string_tc2 = str(fm+tab+fh+tab+day+tab+month+tab+year+tab+user+tab+path2)
+
+    # agrega full permisos y escribe en archivos
+    os.system("sudo chmod -R 777 /etc/cron.d/process1")    
+    file_pointer1 = open("/etc/cron.d/process1", "w")
+    file_pointer1.write(string_tc1)
+    file_pointer1.write("\n")
+    file_pointer1.close()
+
+    os.system("sudo chmod -R 777 /etc/cron.d/process2")
+    file_pointer2 = open("/etc/cron.d/process2", "w")
+    file_pointer2.write(string_tc2)
+    file_pointer2.write("\n")
+    file_pointer2.close()
+    
+    # Revertir permisos
+    os.system("sudo chmod -R 755 /etc/cron.d/process1")
+    os.system("sudo chmod -R 755 /etc/cron.d/process2")
+
+    # Reinia el servicio
+    os.system("sudo /etc/init.d/cron restart")
+
 def toplevel():
+  # Maqueta la ventana para la configuracion del tiempo
+
     # Variables globales
     global initial_hour
     global initial_min
