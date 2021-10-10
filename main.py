@@ -25,18 +25,18 @@ def update():
 
     pointer_file = open("/home/lesterpaz99/Documents/gpio_state.txt", "r")
     for line in pointer_file:
-      field = line.split("\n")
-      value = field[0]
-      
-      if (value == "1"):
-        label_on = Label(main_window, text="ON", font=text1)
-        label_on.place(x=100, y=200)
-        main_window.after(1000, update)
-      
-      if (value == "0"):
-        label_off = Label(main_window, text="OFF", font=text1)
-        label_off.place(x=100, y=200)
-        main_window.after(1000, update)
+        field = line.split("\n")
+        value = field[0]
+        
+        if (value == "1"):
+            label_on = Label(main_window, text="ON", font=text1)
+            label_on.place(x=100, y=200)
+            main_window.after(1000, update)
+        
+        if (value == "0"):
+            label_off = Label(main_window, text="OFF", font=text1)
+            label_off.place(x=100, y=200)
+            main_window.after(1000, update)
 
 update()
 
