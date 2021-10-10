@@ -14,11 +14,11 @@ main_window.title("Control I/O")
 main_window.geometry("600x400+0+0")
 
 # Configura fuente para ventana principal
-text1 = tkFont.Font(family="Helvetica", size=1)
+text1 = tkFont.Font(family="Helvetica", size=16)
 text2 = tkFont.Font(family="Arial", size=14)
 
 # Agrega titulo a la ventana principal
-title = Label(main_window, text="Control GPIO", font=text1).place(x=100, y=10)
+title = Label(main_window, text="Control GPIO", font=text1).place(x=20, y=20)
 
 def update():
     # actualiza el label / etiqueta del estado
@@ -27,16 +27,17 @@ def update():
     for line in pointer_file:
         field = line.split("\n")
         value = field[0]
-        
+        label = ''
+
         if (value == "1"):
-            label_on = Label(main_window, text="ON", font=text1)
-            label_on.place(x=100, y=200)
-            main_window.after(1000, update)
+            label = Label(main_window, text="ON", font=text1)
+            label.place(x=540, y=20)
         
         if (value == "0"):
-            label_off = Label(main_window, text="OFF", font=text1)
-            label_off.place(x=100, y=200)
-            main_window.after(1000, update)
+            label = Label(main_window, text="OFF", font=text1)
+            label.place(x=540, y=20)
+
+        main_window.after(1000, update)
 
 update()
 
@@ -139,9 +140,9 @@ def toplevel():
     window_time.mainloop()
 
 # Crea y agrega botones a la ventana principal
-btn_on = Button(main_window, text="Turn on", command=on).place(x=100,y=100)
-btn_off = Button(main_window, text="Turn off", command=off).place(x=100,y=150)
-btn_window_time = Button(main_window, text="Configurar tiempo", command=toplevel).place(x=100,y=200)
+btn_on = Button(main_window, text="Turn on", command=on).place(x=20,y=100)
+btn_off = Button(main_window, text="Turn off", command=off).place(x=20,y=150)
+btn_window_time = Button(main_window, text="Configurar tiempo", command=toplevel).place(x=20,y=200)
 
 
 main_window.mainloop()
