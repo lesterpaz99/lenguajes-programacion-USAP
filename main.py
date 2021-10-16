@@ -13,6 +13,11 @@ main_window = Tk()
 main_window.title("Control I/O")
 main_window.geometry("600x400+0+0")
 
+# Declarar imagenes
+# El parametro file busca la imagen desde el directorial actual
+img_on = PhotoImage(file="../on.gif")
+img_off = PhotoImage(file="../off.gif")
+
 # Configura fuente para ventana principal
 text1 = tkFont.Font(family="Helvetica", size=16)
 text2 = tkFont.Font(family="Arial", size=14)
@@ -27,19 +32,64 @@ def update():
     for line in pointer_file:
         field = line.split("\n")
         value = field[0]
-        label = ''
 
         if (value == "1"):
-            label = Label(main_window, text="ON", font=text1)
+            label = Label(main_window, text="ON  ", font=text1)
             label.place(x=540, y=20)
-        
+            label2 = Label(main_window, image=img_on)
+            label2.place(x=440, y=20)
+
         if (value == "0"):
             label = Label(main_window, text="OFF", font=text1)
             label.place(x=540, y=20)
+            label2 = Label(main_window, image=img_off)
+            label2.place(x=440, y=20)
 
         main_window.after(1000, update)
 
 update()
+
+# Esta funcion es repetitiva, he agregado la imagen en la funcion update original (arriba) 
+# def update2():
+#     # actualiza la imagen del estado
+
+#     pointer_file2 = open("/home/lesterpaz99/Documents/gpio_state.txt", "r")
+#     for line2 in pointer_file2:
+#         field2 = line2.split("\n")
+#         value2 = field2[0]
+#         label2 = ''
+
+#         if (value2 == "1"):
+#             label2 = Label(main_window, image=img_on)
+#             label2.place(x=440, y=20)
+
+#         if (value2 == "0"):
+#             label2 = Label(main_window, image=img_off)
+#             label2.place(x=440, y=20)
+
+#         main_window.after(1000, update2)
+
+# update2()
+
+# Esta funcion fue solamente como practica para examen usando otro archivo.
+# def update3():
+#     pointer_file3 = open("/home/lesterpaz99/Documents/gpio_state2.txt", "r")
+#     for line3 in pointer_file3:
+#         field3 = line3.split("\n")
+#         value3 = field3[0]
+#         label3 = ''
+
+#         if (value3 == "1"):
+#             label3 = Label(main_window, image=img_on)
+#             label3.place(x=240, y=20)
+
+#         if (value3 == "0"):
+#             label3 = Label(main_window, image=img_off)
+#             label3.place(x=240, y=20)
+
+#         main_window.after(1000, update3)
+
+# update3()
 
 def save():
     # Inserta la configuracion a los archivos en cron
