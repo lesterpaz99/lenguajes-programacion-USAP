@@ -25,6 +25,8 @@ text2 = tkFont.Font(family="Arial", size=14)
 # Agrega titulo a la ventana principal
 title = Label(main_window, text="Control GPIO", font=text1).place(x=20, y=20)
 
+# EXAMEN
+# ------
 def update():
     # actualiza el label / etiqueta del estado
 
@@ -34,63 +36,64 @@ def update():
         value = field[0]
 
         if (value == "1"):
-            label = Label(main_window, text="ON  ", font=text1)
-            label.place(x=540, y=20)
+            #label = Label(main_window, text="ON  ", font=text1)
+            #label.place(x=540, y=20)
             label2 = Label(main_window, image=img_on)
-            label2.place(x=440, y=20)
+            label2.place(x=140, y=100)
 
         if (value == "0"):
-            label = Label(main_window, text="OFF", font=text1)
-            label.place(x=540, y=20)
+            #label = Label(main_window, text="OFF", font=text1)
+            #label.place(x=540, y=20)
             label2 = Label(main_window, image=img_off)
-            label2.place(x=440, y=20)
+            label2.place(x=140, y=100)
 
         main_window.after(1000, update)
 
 update()
 
 # Esta funcion es repetitiva, he agregado la imagen en la funcion update original (arriba) 
-# def update2():
-#     # actualiza la imagen del estado
+def update2():
+    # actualiza el label / etiqueta del estado
 
-#     pointer_file2 = open("/home/lesterpaz99/Documents/gpio_state.txt", "r")
-#     for line2 in pointer_file2:
-#         field2 = line2.split("\n")
-#         value2 = field2[0]
-#         label2 = ''
+    pointer_file = open("/home/lesterpaz99/Documents/gpio_state2.txt", "r")
+    for line in pointer_file:
+        field = line.split("\n")
+        value = field[0]
 
-#         if (value2 == "1"):
-#             label2 = Label(main_window, image=img_on)
-#             label2.place(x=440, y=20)
+        if (value == "1"):
+            label = Label(main_window, image=img_on)
+            label.place(x=260, y=100)
 
-#         if (value2 == "0"):
-#             label2 = Label(main_window, image=img_off)
-#             label2.place(x=440, y=20)
+        if (value == "0"):
+            label = Label(main_window, image=img_off)
+            label.place(x=260, y=100)
 
-#         main_window.after(1000, update2)
+        main_window.after(1000, update2)
 
-# update2()
+update2()
 
-# Esta funcion fue solamente como practica para examen usando otro archivo.
-# def update3():
-#     pointer_file3 = open("/home/lesterpaz99/Documents/gpio_state2.txt", "r")
-#     for line3 in pointer_file3:
-#         field3 = line3.split("\n")
-#         value3 = field3[0]
-#         label3 = ''
+def update3():
+    # actualiza el label / etiqueta del estado
 
-#         if (value3 == "1"):
-#             label3 = Label(main_window, image=img_on)
-#             label3.place(x=240, y=20)
+    pointer_file = open("/home/lesterpaz99/Documents/gpio_state3.txt", "r")
+    for line in pointer_file:
+        field = line.split("\n")
+        value = field[0]
 
-#         if (value3 == "0"):
-#             label3 = Label(main_window, image=img_off)
-#             label3.place(x=240, y=20)
+        if (value == "1"):
+            label = Label(main_window, image=img_on)
+            label.place(x=380, y=100)
 
-#         main_window.after(1000, update3)
+        if (value == "0"):
+            label = Label(main_window, image=img_off)
+            label.place(x=380, y=100)
 
-# update3()
+        main_window.after(1000, update3)
 
+update3()
+
+# --------------
+# FIN DEL EXAMEN
 def save():
     # Inserta la configuracion a los archivos en cron
     
